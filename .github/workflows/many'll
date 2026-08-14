@@ -1,0 +1,26 @@
+name: Build My Angular App
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-angular-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node JS
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: '18'   # Node 18 Angular ke liye stable hai
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: angular-app   # yahan aapke project ka folder path likhna hai
+
+      - name: Build Angular App
+        run: npm run build
+        working-directory: angular-app   # same folder jahan package.json hai
